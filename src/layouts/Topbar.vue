@@ -48,7 +48,7 @@ import DarkIcon from '../icons/Dark.vue'
 import LightIcon from '../icons/Light.vue'
 import { onMounted } from 'vue'
 import { initDropdowns } from 'flowbite'
-import { ref } from 'vue';
+import { ref } from 'vue'
 import type { Ref } from 'vue'
 
 const lighttheme: Ref<boolean> = ref(true);

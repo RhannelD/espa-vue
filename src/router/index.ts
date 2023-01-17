@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Dashboard from '../components/Dashboard/Dashboard.vue'
 import Main from "../layouts/Main.vue"
 
 const router = createRouter({
@@ -8,15 +8,15 @@ const router = createRouter({
     {
       path: '/',
       name: 'dashboard',
-      component: HomeView,
+      component: Dashboard,
       meta: {
         layout: Main,
       },
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue'),
+      path: '/college',
+      name: 'college',
+      component: () => import('../components/College/College.vue'),
       meta: {
         layout: Main,
       },

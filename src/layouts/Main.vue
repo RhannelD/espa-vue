@@ -5,7 +5,7 @@
             <aside class="border-r w-56 bg-white dark:bg-gray-800 dark:border-gray-700" :class="{ hidden: sidebarclose }">
                 <Sidebar/>
             </aside>
-            <main class="flex-1 grow m-4 overflow-y-auto">
+            <main class="flex-1 grow p-4 overflow-y-auto">
                 <slot></slot>
             </main>
         </div>
@@ -13,10 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import Topbar from './Topbar.vue';
-import Sidebar from './Sidebar.vue';
+import Topbar from './Topbar.vue'
+import Sidebar from './Sidebar.vue'
 import { onMounted } from 'vue'
-import { ref } from 'vue';
+import { ref } from 'vue'
 import type { Ref } from 'vue'
 
 const sidebarclose: Ref<boolean> = ref(false);
