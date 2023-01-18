@@ -25,14 +25,14 @@
                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-profile-btn">
                             <li>
                                 <div class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    Rhannel
+                                    {{ user.firstname }}
                                 </div>
                             </li>
                             <li>
                                 <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
                             </li>
                             <li>
-                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                                <a v-on:click="signout()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
                             </li>
                         </ul>
                     </div>
@@ -49,13 +49,39 @@ import LightIcon from '../icons/Light.vue'
 import { onMounted } from 'vue'
 import { initDropdowns } from 'flowbite'
 import { ref } from 'vue'
+import axios from 'axios'
 import type { Ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const lighttheme: Ref<boolean> = ref(true);
+const user: Ref<{
+    firstname: string,
+    lastname: string,
+    sr_code: string|null
+}> = ref({
+    firstname: '',
+    lastname: '',
+    sr_code: null
+});
 
 onMounted(() => {
-    initDropdowns();
+    initDropdowns()
+    setUser()
 })
+
+const setUser = async () => {
+    await axios.get('user')
+        .then((response) => {
+            user.value = response.data
+        })
+}
+
+const signout = async () => {
+    await axios.post('signout')
+    localStorage.removeItem('Authorization')
+    router.push({ name: 'index' })
+}
 
 const themecolortoggle = async () => {
     lighttheme.value = !lighttheme.value
