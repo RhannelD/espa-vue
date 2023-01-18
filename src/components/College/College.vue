@@ -10,9 +10,9 @@
                     class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </form>
         </div>
-        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mt-1 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+        <router-link :to="{ name: 'college.form' }" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mt-1 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             Create
-        </button>
+        </router-link>
     </div>
     <div class="relative overflow-x-auto sm:rounded-lg mt-2 border dark:border-gray-700">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -38,7 +38,8 @@
                         {{ college.college }}
                     </td>
                     <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <router-link :to="{ name: 'college.form', params: { id: college.id } }" class="mr-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</router-link>
+                        <button v-on:click="deleteCollege(college.id)" type="button" class="font-medium text-red-600 dark:text-red-600 hover:underline">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -53,9 +54,10 @@ import Pagination from '@/layouts/Pagination.vue'
 import SearchIcon from '@/icons/Search.vue'
 import router from '@/router'
 import useCollege from '@/composables/colleges'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+import type { Ref } from 'vue'
 
-const breadcrumbs = [
+const breadcrumbs: Ref<any>  = ref([
     {
         name: 'College',
         link: router.resolve({
@@ -66,9 +68,9 @@ const breadcrumbs = [
         name: 'List',
         link: null
     }
-];
+])
 
-const { getColleges, setPage, colleges, search } = useCollege();
+const { getColleges, setPage, deleteCollege, colleges, search } = useCollege()
 
 onMounted(getColleges)
 

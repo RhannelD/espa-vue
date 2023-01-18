@@ -71,6 +71,6 @@ const singin = async () => {
             if (error.response && error.response.status == '422') {
                 credentials_errors.value = error.response.data.errors
             }
-        });
+        })
 }
 </script>
