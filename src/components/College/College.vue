@@ -39,7 +39,7 @@
                     </td>
                     <td class="px-6 py-4 text-right">
                         <router-link :to="{ name: 'college.form', params: { id: college.id } }" class="mr-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</router-link>
-                        <button v-on:click="deleteCollege(college.id)" type="button" class="font-medium text-red-600 dark:text-red-600 hover:underline">Delete</button>
+                        <button v-on:click="deleteCollegeAlert(college.id)" type="button" class="font-medium text-red-600 dark:text-red-600 hover:underline">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -55,6 +55,7 @@ import SearchIcon from '@/icons/Search.vue'
 import router from '@/router'
 import useCollege from '@/composables/colleges'
 import { onMounted, ref } from 'vue'
+import swal from 'sweetalert'
 import type { Ref } from 'vue'
 
 const breadcrumbs: Ref<any>  = ref([
@@ -76,5 +77,19 @@ onMounted(getColleges)
 
 const searching = async () => {
     await setPage(1)
+}
+
+const deleteCollegeAlert = async (college_id: number) => {
+    swal({
+        title: 'Delete the record?',
+        text: 'You will not be able to recover it',
+        icon: 'warning',
+        dangerMode: true,
+        buttons: ['Cancel', 'Yes, Delete It'],
+    }).then((agree) => {
+        if (agree) {
+            deleteCollege(college_id)
+        }
+    })
 }
 </script>

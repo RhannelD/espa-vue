@@ -5,7 +5,7 @@
             <aside class="border-r w-56 bg-white dark:bg-gray-800 dark:border-gray-700" :class="{ hidden: sidebarclose }">
                 <Sidebar/>
             </aside>
-            <main class="flex-1 grow p-4 overflow-y-auto">
+            <main class="flex-1 grow py-4 px-1 overflow-x-auto sm:px-4">
                 <slot></slot>
             </main>
         </div>

@@ -35,6 +35,7 @@ import router from '@/router'
 import useCollege from '@/composables/collegeforms'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import swal from 'sweetalert'
 import type { Ref } from 'vue'
 
 const route = useRoute()
@@ -63,11 +64,22 @@ onMounted(() => {
 })
 
 const saveCollege = () => {
-    var college_id: string = route.params.id as string
-    if (Number(college_id)) {
-        updateCollege(Number(college_id))
-    } else {
-        storeCollege()
-    }
+    var college_id: string = route.params.id == null? '': route.params.id as string
+    var isUpdate: boolean = college_id.length != 0
+    swal({
+        title: isUpdate? 'Update the record?': 'Add a record?',
+        text: isUpdate? 'Your record will be modified': 'New record will be added',
+        icon: 'warning',
+        dangerMode: false,
+        buttons: ['Cancel', isUpdate? 'Yes, Update It': 'Yes, Add It'],
+    }).then((agree) => {
+        if (agree) {
+            if (Number(college_id)) {
+                updateCollege(Number(college_id))
+            } else {
+                storeCollege()
+            }
+        }
+    })
 }
 </script>
