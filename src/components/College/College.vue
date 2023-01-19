@@ -10,7 +10,7 @@
                     class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </form>
         </div>
-        <router-link :to="{ name: 'college.form' }" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mt-1 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+        <router-link :to="{ name: 'college.form' }" v-if="colleges.can_create" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mt-1 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             Create
         </router-link>
     </div>
@@ -38,8 +38,8 @@
                         {{ college.college }}
                     </td>
                     <td class="px-6 py-4 text-right">
-                        <router-link :to="{ name: 'college.form', params: { id: college.id } }" class="mr-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</router-link>
-                        <button v-on:click="deleteCollegeAlert(college.id)" type="button" class="font-medium text-red-600 dark:text-red-600 hover:underline">Delete</button>
+                        <router-link v-if="college.can_update" :to="{ name: 'college.form', params: { id: college.id } }" class="mr-2 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</router-link>
+                        <button v-if="college.can_delete" v-on:click="deleteCollegeAlert(college.id)" type="button" class="font-medium text-red-600 dark:text-red-600 hover:underline">Delete</button>
                     </td>
                 </tr>
             </tbody>
