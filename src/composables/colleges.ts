@@ -12,8 +12,10 @@ export default function useCollge() {
     })
 
     const getColleges = async () => {
-        let response = await axios.get('college', { params: { search: search.value, page: page.value } })
-        colleges.value = response.data
+        await axios.get('college', { params: { search: search.value, page: page.value } })
+            .then((response) => {
+                colleges.value = response.data
+            })
     }
 
     const setPage = async (pagenum: number) => {

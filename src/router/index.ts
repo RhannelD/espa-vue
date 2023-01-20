@@ -39,6 +39,24 @@ const router = createRouter({
                 requiresAuth: true
             },
         },
+        {
+            path: '/program',
+            name: 'program',
+            component: () => import('../components/Program/Program.vue'),
+            meta: {
+                layout: Main,
+                requiresAuth: true
+            },
+        },
+        {
+            path: '/program/form/:id?',
+            name: 'program.form',
+            component: () => import('../components/Program/ProgramForm.vue'),
+            meta: {
+                layout: Main,
+                requiresAuth: true
+            },
+        },
     ]
 })
 
