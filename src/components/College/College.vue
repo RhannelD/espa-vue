@@ -2,13 +2,7 @@
     <Breadcrumb :breadcrumbs="breadcrumbs"/>
     <div class="flex justify-between flex-wrap mt-2">
         <div class="mt-1">
-            <form class="relative" @submit.prevent="searching">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <SearchIcon/>
-                </div>
-                <input v-model="search" type="text" id="table-search-users" placeholder="Search for colleges"
-                    class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            </form>
+            <Search v-model="search" @searching="searching()" placeholder="Search for colleges"/>
         </div>
         <router-link :to="{ name: 'college.form' }" v-if="colleges.can_create" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mt-1 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             Create
@@ -51,7 +45,7 @@
 <script setup lang="ts">
 import Breadcrumb from '@/layouts/Breadcrumb.vue'
 import Pagination from '@/layouts/Pagination.vue'
-import SearchIcon from '@/icons/Search.vue'
+import Search from '@/layouts/Search.vue'
 import router from '@/router'
 import useCollege from '@/composables/colleges'
 import { onMounted, ref } from 'vue'
@@ -91,7 +85,7 @@ const deleteCollegeAlert = async (college_id: number) => {
             await deleteCollege(college_id)
             swal({
                 title: 'Record Deleted!',
-                text:  '',
+                text: '',
                 icon: 'success',
             })
         }

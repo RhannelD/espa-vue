@@ -18,7 +18,8 @@ const router = createRouter({
             component: Dashboard,
             meta: {
                 layout: Main,
-                requiresAuth: true
+                requiresAuth: true,
+                active_nav: 'dashboard',
             },
         },
         {
@@ -27,7 +28,8 @@ const router = createRouter({
             component: () => import('../components/College/College.vue'),
             meta: {
                 layout: Main,
-                requiresAuth: true
+                requiresAuth: true,
+                active_nav: 'college',
             },
         },
         {
@@ -36,7 +38,8 @@ const router = createRouter({
             component: () => import('../components/College/CollegeForm.vue'),
             meta: {
                 layout: Main,
-                requiresAuth: true
+                requiresAuth: true,
+                active_nav: 'college',
             },
         },
         {
@@ -45,7 +48,8 @@ const router = createRouter({
             component: () => import('../components/Program/Program.vue'),
             meta: {
                 layout: Main,
-                requiresAuth: true
+                requiresAuth: true,
+                active_nav: 'program',
             },
         },
         {
@@ -54,7 +58,8 @@ const router = createRouter({
             component: () => import('../components/Program/ProgramForm.vue'),
             meta: {
                 layout: Main,
-                requiresAuth: true
+                requiresAuth: true,
+                active_nav: 'program',
             },
         },
     ]

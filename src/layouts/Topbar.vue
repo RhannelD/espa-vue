@@ -3,7 +3,7 @@
         <div class="flex flex-wrap justify-between items-center">
             <div class="flex flex-wrap items-center">
                 <button @click="$emit('sidebartoggle')" class="text-gray-600 p-2 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:text-gray-100 dark:hover:bg-gray-700">
-                    <MenuIcon/>
+                    <MenuIcon class="h-6 w-6"/>
                 </button>
                 <router-link :to="{ name: 'dashboard' }" class="p-2 text-2xl font-extrabold dark:text-gray-100">
                     ESPA
@@ -12,8 +12,8 @@
             <div class="flex flex-wrap items-center pr-2">
                 <div class="relative">
                     <button v-on:click="themecolortoggle" class="text-gray-600 p-2 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:text-gray-100 dark:hover:bg-gray-700 text-center">
-                        <LightIcon v-if="lighttheme"/>
-                        <DarkIcon v-else/>
+                        <LightIcon v-if="lighttheme" class="w-6 h-6"/>
+                        <DarkIcon v-else class="w-6 h-6"/>
                     </button>
                 </div>
                 <div class="relative">
