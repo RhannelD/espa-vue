@@ -11,7 +11,7 @@
             </span>
         </span>
         <ul class="inline-flex items-center -space-x-px">
-            <li v-for="(link, index) in meta.links">
+            <li v-for="(link, index) in meta.links" class="cursor-pointer">
                 <a v-if="index == 0" v-on:click="prevPage()" class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                     <PreviousIcon class="h-5 w-5"/>    
                 </a>
@@ -37,7 +37,9 @@ const props = defineProps(['meta'])
 const emit = defineEmits(['setPage'])
 
 const setPage = async (pagenum: number) => {
-    emit('setPage', pagenum)
+    if (Number(pagenum)) {
+        emit('setPage', pagenum)
+    }
 }
 
 const prevPage = async () => {

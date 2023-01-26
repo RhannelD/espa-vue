@@ -62,6 +62,26 @@ const router = createRouter({
                 active_nav: 'program',
             },
         },
+        {
+            path: '/course',
+            name: 'course',
+            component: () => import('../components/Course/Course.vue'),
+            meta: {
+                layout: Main,
+                requiresAuth: true,
+                active_nav: 'course',
+            },
+        },
+        {
+            path: '/course/form/:id?',
+            name: 'course.form',
+            component: () => import('../components/Course/CourseForm.vue'),
+            meta: {
+                layout: Main,
+                requiresAuth: true,
+                active_nav: 'course',
+            },
+        },
     ]
 })
 
