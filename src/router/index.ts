@@ -82,6 +82,26 @@ const router = createRouter({
                 active_nav: 'course',
             },
         },
+        {
+            path: '/officer',
+            name: 'officer',
+            component: () => import('../components/Officer/Officer.vue'),
+            meta: {
+                layout: Main,
+                requiresAuth: true,
+                active_nav: 'officer',
+            },
+        },
+        {
+            path: '/officer/form/:id?',
+            name: 'officer.form',
+            component: () => import('../components/Officer/OfficerForm.vue'),
+            meta: {
+                layout: Main,
+                requiresAuth: true,
+                active_nav: 'officer',
+            },
+        },
     ]
 })
 
