@@ -102,6 +102,26 @@ const router = createRouter({
                 active_nav: 'officer',
             },
         },
+        {
+            path: '/student',
+            name: 'student',
+            component: () => import('../components/Student/Student.vue'),
+            meta: {
+                layout: Main,
+                requiresAuth: true,
+                active_nav: 'student',
+            },
+        },
+        {
+            path: '/student/form/:id?',
+            name: 'student.form',
+            component: () => import('../components/Student/StudentForm.vue'),
+            meta: {
+                layout: Main,
+                requiresAuth: true,
+                active_nav: 'student',
+            },
+        },
     ]
 })
 
